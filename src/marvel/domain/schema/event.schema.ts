@@ -33,7 +33,7 @@ export const EventeSchema = new Schema({
                                         type: { type: "string" },
                                         url: { type: "string" }
                                     },
-                                    required: ["type", "url"]
+                                    
                                 }
                             },
                             modified: { type: "string", format: "date-time" },
@@ -45,7 +45,7 @@ export const EventeSchema = new Schema({
                                     path: { type: "string" },
                                     extension: { type: "string" }
                                 },
-                                required: ["path", "extension"]
+                                
                             },
                             creators: {
                                 type: "object",
@@ -61,12 +61,12 @@ export const EventeSchema = new Schema({
                                                 name: { type: "string" },
                                                 role: { type: "string" }
                                             },
-                                            required: ["resourceURI", "name", "role"]
+                                            
                                         }
                                     },
                                     returned: { type: "number" }
                                 },
-                                required: ["available", "collectionURI", "items", "returned"]
+                               
                             },
                             characters: {
                                 type: "object",
@@ -81,12 +81,12 @@ export const EventeSchema = new Schema({
                                                 resourceURI: { type: "string" },
                                                 name: { type: "string" }
                                             },
-                                            required: ["resourceURI", "name"]
+                                            
                                         }
                                     },
                                     returned: { type: "number" }
                                 },
-                                required: ["available", "collectionURI", "items", "returned"]
+                                
                             },
                             stories: {
                                 type: "object",
@@ -102,12 +102,12 @@ export const EventeSchema = new Schema({
                                                 name: { type: "string" },
                                                 type: { type: "string" }
                                             },
-                                            required: ["resourceURI", "name", "type"]
+                                            
                                         }
                                     },
                                     returned: { type: "number" }
                                 },
-                                required: ["available", "collectionURI", "items", "returned"]
+                                
                             },
                             comics: {
                                 type: "object",
@@ -122,12 +122,12 @@ export const EventeSchema = new Schema({
                                                 resourceURI: { type: "string" },
                                                 name: { type: "string" }
                                             },
-                                            required: ["resourceURI", "name"]
+                                        
                                         }
                                     },
                                     returned: { type: "number" }
                                 },
-                                required: ["available", "collectionURI", "items", "returned"]
+                                
                             },
                             series: {
                                 type: "object",
@@ -142,12 +142,12 @@ export const EventeSchema = new Schema({
                                                 resourceURI: { type: "string" },
                                                 name: { type: "string" }
                                             },
-                                            required: ["resourceURI", "name"]
+                                            
                                         }
                                     },
                                     returned: { type: "number" }
                                 },
-                                required: ["available", "collectionURI", "items", "returned"]
+                               
                             },
                             next: {
                                 type: "object",
@@ -155,7 +155,7 @@ export const EventeSchema = new Schema({
                                     resourceURI: { type: "string" },
                                     name: { type: "string" }
                                 },
-                                required: ["resourceURI", "name"]
+                                
                             },
                             previous: {
                                 type: "object",
@@ -163,42 +163,17 @@ export const EventeSchema = new Schema({
                                     resourceURI: { type: "string" },
                                     name: { type: "string" }
                                 },
-                                required: ["resourceURI", "name"]
+                               
                             }
                         },
-                        required: [
-                            "id",
-                            "title",
-                            "description",
-                            "resourceURI",
-                            "urls",
-                            "modified",
-                            "start",
-                            "end",
-                            "thumbnail",
-                            "creators",
-                            "characters",
-                            "stories",
-                            "comics",
-                            "series",
-                            "next",
-                            "previous"
-                        ]
+                       
                     }
                 }
             },
-            required: ["offset", "limit", "total", "count", "results"]
+           
         }
     },
-    required: [
-        "code",
-        "status",
-        "copyright",
-        "attributionText",
-        "attributionHTML",
-        "etag",
-        "data"
-    ]
+    
 })
 
 export default model('Event', EventeSchema);
