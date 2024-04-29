@@ -3,8 +3,7 @@ import  eventController from './controller/eventController'
 
 
 const routes = Router()
-        routes.get('/event', eventController.finEvent)
-        routes.post('/puxa',eventController.createEvent)
+        routes.post('/event',eventController.createEvent)
 export {
     routes
 }
