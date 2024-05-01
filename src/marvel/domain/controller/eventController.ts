@@ -10,7 +10,7 @@ class EventController {
             return res.status(201).json(eventCreated); 
         }catch(e){
             console.error(e);
-            res.status(500).json(e)
+            res.status(500).json(e);
         }
     }
 }
