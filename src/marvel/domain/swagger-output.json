@@ -24,8 +24,23 @@
           }
         }
       }
+    },
+    "/creators": {
+      "post": {
+        "tags": ["Fall of the Mutants"], 
+        "description": "pega os criadores da saga Fall of the Mutants",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   }
+  
   
   
 }
