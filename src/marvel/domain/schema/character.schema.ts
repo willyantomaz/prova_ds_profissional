@@ -7,6 +7,7 @@ export const CharacterSchema = new Schema({
     },
     name:{type: "string"},
     description: {type: "string"},
+    image: {type: "string"},
     comics: { 
         type: "array",
         items: {
@@ -15,7 +16,13 @@ export const CharacterSchema = new Schema({
                 properties: {
                     id: "number",
                     title: "string",
-                    creators: "string"
+                    creators: {
+                        type: "object",
+                        properties: {
+                            id: "number",
+                            name: "string"
+                        }
+                    }
                 }
             }
         }              

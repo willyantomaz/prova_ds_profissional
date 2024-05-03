@@ -3,6 +3,8 @@ import characterSchema from '../schema/character.schema';
 import { Character } from '../Entidade/charaters/character';
 import { CharactersComicsDTO } from '../Entidade/charaters/characterComicsDTO';
 import { response } from 'express';
+import characterController from '../controller/characterController';
+import { CharacterComicsCreatorsDTO } from '../Entidade/charaters/characterComicsCreatorDTO';
 
 export class CharacterService {
 
@@ -20,10 +22,10 @@ export class CharacterService {
   
     public async createCharacters(){       
         const response = this.findCharacters();             
-        const charactersList: Array<Character> = await response; 
+        const charactersList: Array<any> = await response; 
         charactersList.forEach(async (character) => {
             let mappedCharacter: Character = await this.mapCharacterToSave(character)
-            try {                            
+            try {                                            
                 characterSchema.create(mappedCharacter);                                            
             } catch (error) {
                 console.log(error);
@@ -36,16 +38,16 @@ export class CharacterService {
             id: responseCharacter.id,
             name: responseCharacter.name,
             description: responseCharacter.description,
+            image: responseCharacter.thumbnail.path + "." + responseCharacter.thumbnail.extension, 
             comics: await this.mapCharacterComics(responseCharacter.comics.collectionURI)
-        }
-
+        }        
         return characterToSave;
     }
 
     private async mapCharacterComics(url: string): Promise<Array<CharactersComicsDTO>> {
         let characterComicsList: Array<CharactersComicsDTO> = [];
         const response = await this.genericSearch(url);
-        let responseComicList: Array<any> = response.data.results;
+        let responseComicList: Array<any> = response.data.data.results;
         responseComicList.forEach(comic => {
             let characterComicsDTO: CharactersComicsDTO = {
                 id: comic.id,
@@ -57,9 +59,16 @@ export class CharacterService {
         return characterComicsList;
     }
 
-    private mapCreators(responseCreatorsList: Array<any>): Array<string> {
-        let creatorsList: Array<string> = []
-        responseCreatorsList.forEach(creator => creatorsList.push(creator.name))
+    private mapCreators(responseCreatorsList: Array<any>): Array<CharacterComicsCreatorsDTO> {
+        let creatorsList: Array<CharacterComicsCreatorsDTO> = []
+        responseCreatorsList.forEach(creator => {             
+            const id = creator.resourceURI.split('/').slice(-1)
+            let characterComicsCreatorDTO: CharacterComicsCreatorsDTO = {
+                id: id,
+                name: creator.name
+            }
+            creatorsList.push(characterComicsCreatorDTO)
+        })
         return creatorsList;
     }
 }
