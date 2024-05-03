@@ -3,7 +3,6 @@ import { EventService } from "../service/eventService";
 
 
 class EventController {
-<<<<<<< HEAD
     
     async createEvent(req: Request, res: Response) {
         try{
@@ -14,9 +13,6 @@ class EventController {
             res.status(500).json(e);
         }
     }
-=======
-
->>>>>>> origin/gabriel
 }
 
 export default new EventController();
