@@ -16,8 +16,8 @@ export class CreatorService {
                 id: creator.id,
                 nome: creator.fullName,
                 modificado: creator.modified,
-                resourceURI: creator.resourceURI,
-                //imagem: creatorResult.thumbnail.path + '.' + creatorResult.thumbnail.extension,
+                atorURL: creator.resourceURI,
+                imagem: creator.thumbnail.path + '.' + creator.thumbnail.extension,
             }
             createCreator.push(cratorMap);
             creatorModel.create(createCreator);

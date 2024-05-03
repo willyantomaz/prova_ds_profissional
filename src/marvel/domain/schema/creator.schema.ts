@@ -4,8 +4,8 @@ export const CreatorSchema = new Schema({
         id: { type: Number },
         nome: { type: String},
         modificado: { type: String},
-        resourceURI: { type: String},
-        //Image: {type: String}
+        atorURL: { type: String},
+        imagem: {type: String}
 
 });
 

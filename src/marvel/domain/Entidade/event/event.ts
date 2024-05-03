@@ -1,19 +1,11 @@
-interface Event{
-    // colocar as devidas referencias dos atributos, tiar os any
+export interface Event{
     id: number;
-    title: string;
-    description: string;
-    resourceURI: string;
-    urls: any[];
-    modified: string;
-    start: string;
-    end: string;
-    thumbnail: any;
-    creators: any;
-    characters: any;
-    stories: any;
-    comics: any;
-    series: any;
-    next: any;
-    previous: any;
+    titulo: string;
+    descricao: string;
+    sagaURL: string;
+    modificado: string;
+    inicio: string;
+    fim: string;
+    imagem: string;
+  
 }
