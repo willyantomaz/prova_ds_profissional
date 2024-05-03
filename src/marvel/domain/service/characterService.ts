@@ -34,7 +34,7 @@ export class CharacterService {
     private async mapCharacterToSave(responseCharacter: any): Promise<Character> {
         let characterToSave: Character = {
             id: responseCharacter.id,
-            title: responseCharacter.name,
+            name: responseCharacter.name,
             description: responseCharacter.description,
             comics: await this.mapCharacterComics(responseCharacter.comics.collectionURI)
         }
