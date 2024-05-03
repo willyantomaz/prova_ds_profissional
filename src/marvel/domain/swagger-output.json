@@ -38,9 +38,34 @@
           }
         }
       }
+    },
+    "/create": {
+      "post": {
+        "tags": ["Fall of the Mutants"], 
+        "description": "pega os personagens da saga Fall of the Mutants",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character": {
+      "get": {
+        "tags": ["Fall of the Mutants"], 
+        "description": "mostra os personagens da saga Fall of the Mutants",
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
-  }
-  
-  
-  
+  } 
 }
