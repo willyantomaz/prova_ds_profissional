@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 export const ComicSchema = new Schema({          
-    id: {type: "number"},
+    _id: {type: "number"},
     title:{type: "string"},    
     description: {type: "string"},
     releaseDate: {type: "string"},

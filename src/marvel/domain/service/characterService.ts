@@ -2,8 +2,6 @@ import axios from 'axios';
 import characterSchema from '../schema/character.schema';
 import { Character } from '../Entidade/charaters/character';
 import { CharactersComicsDTO } from '../Entidade/charaters/characterComicsDTO';
-import { response } from 'express';
-import characterController from '../controller/characterController';
 import { CharacterComicsCreatorsDTO } from '../Entidade/charaters/characterComicsCreatorDTO';
 
 export class CharacterService {
@@ -23,12 +21,12 @@ export class CharacterService {
     public async createCharacters(){       
         const response = this.findCharacters();             
         const charactersList: Array<any> = await response; 
-        let mappedCharacterList: Array<Character> = []
+        let mappedCharacterList: Array<Character> = [];
         await charactersList.forEach(async (character) => {
-            let mappedCharacter: Character = await this.mapCharacterToSave(character)
+            let mappedCharacter: Character = await this.mapCharacterToSave(character);
             mappedCharacterList.push(mappedCharacter);
-            try {                                            
-                characterSchema.create(mappedCharacter);                  
+            try {
+                characterSchema.create(mappedCharacter);
             } catch (error) {
                 console.log(error);
             }
@@ -38,11 +36,12 @@ export class CharacterService {
 
     private async mapCharacterToSave(responseCharacter: any): Promise<Character> {
         let characterToSave: Character = {
-            id: responseCharacter.id,
+            _id: responseCharacter.id,
             name: responseCharacter.name,
             description: responseCharacter.description,
             image: responseCharacter.thumbnail.path + "." + responseCharacter.thumbnail.extension, 
-            comics: await this.mapCharacterComics(responseCharacter.comics.collectionURI)
+            comics: await this.mapCharacterComics(responseCharacter.comics.collectionURI),
+            favorite: false
         }        
         return characterToSave;
     }
@@ -74,5 +73,71 @@ export class CharacterService {
             creatorsList.push(characterComicsCreatorDTO);
         })
         return creatorsList;
+    }
+
+    public async findAllCharacter() {
+        try{            
+            const foundCharacters: Array<Character> = await characterSchema.find();
+            return foundCharacters;
+        }catch (e) {
+            console.log(e)
+        }        
+    }
+
+    public async findCharacterById(search: string) {
+        try{
+            const foundCharacter = await characterSchema.findById(search);
+            return foundCharacter;
+        }catch(e) {
+            console.log(e)
+        }        
+    }
+
+    public async deleteCharacterById(id: string): Promise<void> {
+        try{
+            await characterSchema.findByIdAndDelete(id);
+        }catch(e) {
+            console.log(e)
+        }
+    }
+
+    public async updateCharacter(id: string, updatedCharacter?: Character) {
+        try {
+            const characterUpdating = await characterSchema.findByIdAndUpdate(id, updatedCharacter, {new: true});        
+            return characterUpdating;
+        } catch(e) {
+            console.log(e)
+        }
+    }
+
+    public async saveNewCharacter(newCharacter: Character) {
+        try {    
+            const characterId = (await characterSchema.findOne({}, { sort: { _id: -1 } }))?._id
+            newCharacter._id = characterId ? characterId + 1 : characterId                   
+            const character = await characterSchema.create(newCharacter);
+            return character;            
+        } catch(e) {
+            console.log(e)
+        }
+    }
+
+    public async favoriteCharacter(id: string) {
+        try {
+            const characterToFavorite = await characterSchema.findById(id)        
+            if(characterToFavorite) {
+                characterToFavorite.favorite = true
+                return await characterSchema.findByIdAndUpdate(id, characterToFavorite, {new: true})                
+            }    
+        }catch (e) {
+            console.log(e)
+        }
+    }
+
+    public async findFavoriteCharacter() {
+        try {
+            return await characterSchema.find({favorite: true})
+        }catch (e) {
+            console.log(e)
+        }
     }
 }

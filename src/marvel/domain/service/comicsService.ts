@@ -61,5 +61,49 @@ export class ComicsService {
             characterComicsList.push(characterComicsDTO);
         })        
         return characterComicsList;
-    }     
+    }   
+    
+    public async findAllComics() {
+        try{
+            const foundComics: Array<Comic> = await comicSchema.find();
+            return foundComics;
+        }catch (e) {
+            console.log(e)
+        }        
+    }
+    
+    public async findComicById(search: string) {
+        try{
+            const foundComic = await comicSchema.findById(search);
+            return foundComic;
+        }catch(e) {
+            console.log(e)
+        }        
+    }
+    
+    public async deleteComicById(id: string): Promise<void> {
+        try{
+            await comicSchema.findByIdAndDelete(id);
+        }catch(e) {
+            console.log(e)
+        }
+    }
+    
+    public async updateComic(id: string, updatedComic: Comic) {
+        try {
+            const comicUpdating = await comicSchema.findByIdAndUpdate(id, updatedComic, {new: true});        
+            return comicUpdating;
+        } catch(e) {
+            console.log(e)
+        }
+    }
+    
+    public async saveNewComic(newComic: Comic) {
+        try {            
+            const comic = await comicSchema.create(newComic);
+            return comic;            
+        } catch(e) {
+            console.log(e)
+        }
+    }
 }

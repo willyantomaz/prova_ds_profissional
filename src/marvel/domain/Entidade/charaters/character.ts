@@ -1,9 +1,10 @@
 import { CharactersComicsDTO } from "./characterComicsDTO";
 
 export interface Character {
-    id: number;
+    _id?: number;
     name: string;
     description: string;
-    image?: string
-    comics: Array<CharactersComicsDTO>;
+    image: string;
+    comics?: Array<CharactersComicsDTO>;
+    favorite: boolean;
 }
