@@ -12,7 +12,7 @@ export class CharacterService {
         return await axios.get(url + "?ts=1&apikey=7e976b6b1253c4e95653b7d83be28efe&hash=805bcb66afdc9e0448dd917b9982e90d&events=248&limit=42");
     }
 
-    public async findCharacters(){
+    public async findCharacters(){        
         const response = await this.genericSearch("http://gateway.marvel.com/v1/public/characters");
         const data = await response;
         const characters = data.data.data.results;            
@@ -23,14 +23,17 @@ export class CharacterService {
     public async createCharacters(){       
         const response = this.findCharacters();             
         const charactersList: Array<any> = await response; 
+        let mappedCharacterList: Array<Character> = []
         charactersList.forEach(async (character) => {
             let mappedCharacter: Character = await this.mapCharacterToSave(character)
+            mappedCharacterList.push(mappedCharacter);
             try {                                            
-                characterSchema.create(mappedCharacter);                                            
+                characterSchema.create(mappedCharacter);                  
             } catch (error) {
                 console.log(error);
             }
-        })                     
+        })
+        return mappedCharacterList;                     
     }
 
     private async mapCharacterToSave(responseCharacter: any): Promise<Character> {
@@ -59,15 +62,16 @@ export class CharacterService {
         return characterComicsList;
     }
 
-    private mapCreators(responseCreatorsList: Array<any>): Array<CharacterComicsCreatorsDTO> {
-        let creatorsList: Array<CharacterComicsCreatorsDTO> = []
-        responseCreatorsList.forEach(creator => {             
-            const id = creator.resourceURI.split('/').slice(-1)
+    public mapCreators(responseCreatorsList: Array<any>): Array<CharacterComicsCreatorsDTO> {
+        let creatorsList: Array<CharacterComicsCreatorsDTO> = [];
+        responseCreatorsList.forEach(creator => {
+            const id = creator.resourceURI.split('/').slice(-1);
             let characterComicsCreatorDTO: CharacterComicsCreatorsDTO = {
                 id: id,
-                name: creator.name
+                name: creator.name,
+                role: creator.role
             }
-            creatorsList.push(characterComicsCreatorDTO)
+            creatorsList.push(characterComicsCreatorDTO);
         })
         return creatorsList;
     }
