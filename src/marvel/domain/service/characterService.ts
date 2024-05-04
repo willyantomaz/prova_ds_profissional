@@ -24,7 +24,7 @@ export class CharacterService {
         const response = this.findCharacters();             
         const charactersList: Array<any> = await response; 
         let mappedCharacterList: Array<Character> = []
-        charactersList.forEach(async (character) => {
+        await charactersList.forEach(async (character) => {
             let mappedCharacter: Character = await this.mapCharacterToSave(character)
             mappedCharacterList.push(mappedCharacter);
             try {                                            
@@ -67,7 +67,7 @@ export class CharacterService {
         responseCreatorsList.forEach(creator => {
             const id = creator.resourceURI.split('/').slice(-1);
             let characterComicsCreatorDTO: CharacterComicsCreatorsDTO = {
-                id: id,
+                id: id[0],
                 name: creator.name,
                 role: creator.role
             }

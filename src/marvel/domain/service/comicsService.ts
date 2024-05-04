@@ -55,7 +55,7 @@ export class ComicsService {
         charactersList.forEach(character => {
             const id = character.resourceURI.split('/').slice(-1);
             let characterComicsDTO: CharacterDTO = {                
-                id: id,
+                id: id[0],
                 name: character.name,
             }
             characterComicsList.push(characterComicsDTO);
