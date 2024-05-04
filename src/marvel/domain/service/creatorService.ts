@@ -19,7 +19,7 @@ export class CreatorService {
         creatorResult.forEach(async (creator: any) => {   
 
             let cratorMap: Creator = {
-                id: creator.id,
+                _id: creator.id,
                 nome: creator.fullName,
                 modificado: creator.modified,
                 atorURL: creator.resourceURI,

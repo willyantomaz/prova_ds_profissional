@@ -11,7 +11,7 @@ export class EventService {
         let eventResult = data.data.results[0];
         
         let eventMap: Event = {
-            id: eventResult.id,
+            _id: eventResult.id,
             titulo: eventResult.title,
             modificado: eventResult.modified,
             descricao: eventResult.description,

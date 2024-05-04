@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 export const CreatorSchema = new Schema({
-        id: { type: Number },
+        _id: { type: Number },
         nome: { type: String },
         modificado: { type: String },
         atorURL: { type: String },
