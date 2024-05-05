@@ -123,7 +123,7 @@ export class CharacterService {
         try {
             const characterToFavorite = await characterSchema.findById(id)        
             if(characterToFavorite) {
-                characterToFavorite.favorite = true
+                characterToFavorite.favorite = !characterToFavorite.favorite
                 return await characterSchema.findByIdAndUpdate(id, characterToFavorite, {new: true})                
             }    
         }catch (e) {
