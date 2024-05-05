@@ -5,8 +5,17 @@ import characterController from './controller/characterController';
 import comicsController from './controller/comicsController';
 
 const routes = Router()
-        routes.post('/event/populate', eventController.findAndCreateEvent);
-        routes.post('/creators/populate', creatorController.findAndCreateCreator);
+        routes.post('/event/populate',eventController.findAndCreateEvent);
+        routes.get('/event', eventController.findEvent);
+        routes.put('/event/atualiza/:id', eventController.updateEvent);
+        routes.delete('/event/delete/:id', eventController.deleteEvent);
+
+        routes.post('/creators/populate',creatorController.findAndCreateCreator); 
+        routes.get('/creators', creatorController.findCreator);
+        routes.post('/creators/create', creatorController.createCriador);   
+        routes.get('/creators/findById/:id', creatorController.findCreatorById);
+        routes.put('/creators/atualiza/:id', creatorController.updateCreator);
+        routes.delete('/creators/delete/:id', creatorController.deleteCreator);
 
         routes.post('/character/populate', characterController.findAndSaveCharacter);        
         routes.post('/character/save', characterController.saveNewCharacter);

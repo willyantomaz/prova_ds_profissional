@@ -50,7 +50,7 @@ export class CharacterService {
         let characterComicsList: Array<CharactersComicsDTO> = [];
         const response = await this.genericSearch(url);
         let responseComicList: Array<any> = response.data.data.results;
-        responseComicList.forEach(comic => {
+        responseComicList.forEach(comic => {    
             let characterComicsDTO: CharactersComicsDTO = {
                 id: comic.id,
                 title: comic.title,

@@ -11,9 +11,9 @@
     "http"
   ],
   "paths": {
-    "/event": {
+    "/event/populate": {
       "post": {
-        "tags": ["Fall of the Mutants"], 
+        "tags": ["Fall of the Mutants Populate"], 
         "description": "pegar a saga Fall of the Mutants",
         "responses": {
           "201": {
@@ -25,9 +25,9 @@
         }
       }
     },
-    "/creators": {
+    "/creators/populate": {
       "post": {
-        "tags": ["Fall of the Mutants"], 
+        "tags": ["Fall of the Mutants Populate"], 
         "description": "pega os criadores da saga Fall of the Mutants",
         "responses": {
           "201": {
@@ -39,9 +39,9 @@
         }
       }
     },
-    "/create": {
+    "/create/populate": {
       "post": {
-        "tags": ["Fall of the Mutants"], 
+        "tags": ["Fall of the Mutants Populate"], 
         "description": "pega os personagens da saga Fall of the Mutants",
         "responses": {
           "201": {
@@ -55,7 +55,7 @@
     },
     "/character": {
       "get": {
-        "tags": ["Fall of the Mutants"], 
+        "tags": ["Fall of the Mutants Populate"], 
         "description": "mostra os personagens da saga Fall of the Mutants",
         "responses": {
           "201": {
@@ -66,6 +66,232 @@
           }
         }
       }
+    },
+    "/event": {
+      "get": {
+        "tags": ["Saga"], 
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/event/atualiza/{id}": {
+      "put": {
+        "tags": ["Saga"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/event/delete/{id}": {
+      "delete": {
+        "tags": ["Saga"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators": {
+      "get": {
+        "tags": ["Criadores"], 
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/create": {
+      "post": {
+        "tags": ["Criadores"], 
+        "description": "",
+        "headers": {
+          "Content-Type": {
+            "type": "string",
+            "description": "application/json"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "required": true,
+            "type": "Creator",
+            "schema":{
+              "$ref": "#/components/schemas/Creator"
+            }
+          }        
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/findById/{id}": {
+      "get": {
+        "tags": ["Criadores"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/atualiza/{id}": {
+      "put": {
+        "tags": ["Criadores"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/delete/{id}": {
+      "delete": {
+        "tags": ["Criadores"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
-  } 
+  },   
+    "components": {
+      "schemas": {
+        "Quadrinho": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "titulo": {
+              "type": "string"
+            },
+            "hqURL": {
+              "type": "string"
+            }
+          }
+        },
+        "Creator": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "integer"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "modificado": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "atorURL": {
+              "type": "string"
+            },
+            "imagem": {
+              "type": "string"
+            },
+            "quadrinhos": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Quadrinho"
+              }
+            },
+            "__v": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+  }
+  
 }

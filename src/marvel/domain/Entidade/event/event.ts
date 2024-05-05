@@ -1,5 +1,5 @@
 export interface Event{
-    id: number;
+    _id: number;
     titulo: string;
     descricao: string;
     sagaURL: string;

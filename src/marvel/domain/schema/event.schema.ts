@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 export const EventeSchema = new Schema({
-   id: { type: Number },
+   _id: { type: Number },
    titulo: { type: String},
    descricao: { type: String},
    sagaURL: { type: String},
