@@ -70,7 +70,7 @@
     "/event": {
       "get": {
         "tags": ["Saga"], 
-        "description": "",
+        "description": "Visualiza a Saga Fall of the Mutants",
         "responses": {
           "201": {
             "description": "Created"
@@ -84,7 +84,7 @@
     "/event/atualiza/{id}": {
       "put": {
         "tags": ["Saga"], 
-        "description": "",
+        "description": "Atualiza a saga pelo id",
         "parameters":
           [
             {
@@ -116,7 +116,7 @@
     "/event/delete/{id}": {
       "delete": {
         "tags": ["Saga"], 
-        "description": "",
+        "description": "Deleta a saga pelo id",
         "parameters":
           [
             {
@@ -139,7 +139,7 @@
     "/creators": {
       "get": {
         "tags": ["Criadores"], 
-        "description": "",
+        "description": "Ve todos os criadores e os seus quadrinhos da saga Fall of the Mutants",
         "responses": {
           "201": {
             "description": "Created"
@@ -153,7 +153,7 @@
     "/creators/create": {
       "post": {
         "tags": ["Criadores"], 
-        "description": "",
+        "description": "Cria um novo criador",
         "headers": {
           "Content-Type": {
             "type": "string",
@@ -184,7 +184,7 @@
     "/creators/findById/{id}": {
       "get": {
         "tags": ["Criadores"], 
-        "description": "",
+        "description": "Pega os criadores pelo id",
         "parameters":
           [
             {
@@ -207,7 +207,7 @@
     "/creators/findByName/{name}": {
       "get": {
         "tags": ["Criadores"], 
-        "description": "",
+        "description": "procura um criador pelo nome",
         "parameters":
           [
             {
@@ -230,7 +230,7 @@
     "/creators/atualiza/{id}": {
       "put": {
         "tags": ["Criadores"], 
-        "description": "",
+        "description": "Atualiza um criardor pelo id",
         "parameters":
           [
             {
@@ -262,7 +262,7 @@
     "/creators/delete/{id}": {
       "delete": {
         "tags": ["Criadores"], 
-        "description": "",
+        "description": "Deleta um criador pelo id",
         "parameters":
           [
             {
@@ -285,7 +285,7 @@
     "/character/save": {
       "post": {
         "tags": ["Personagem"], 
-        "description": "",
+        "description": "Cria um personagem novo",
         "parameters":
           [         
             {
@@ -311,7 +311,7 @@
     "/character/findAll": {
       "get": {
         "tags": ["Personagem"], 
-        "description": "",
+        "description": "pega todos os personagens da saga Fall of the Mutants",
         "responses": {
           "201": {
             "description": "Created"
@@ -325,7 +325,7 @@
     "/character/findFavorite": {
       "get": {
         "tags": ["Personagem"], 
-        "description": "",
+        "description": "ve os personagens favoritos",
         "responses": {
           "201": {
             "description": "Created"
@@ -339,7 +339,7 @@
     "/character/findById/{id}": {
       "get": {
         "tags": ["Personagem"], 
-        "description": "",
+        "description": "procura um personagem pelo id",
         "parameters":
           [
             {
@@ -362,7 +362,7 @@
     "/character/delete/{id}": {
       "delete": {
         "tags": ["Personagem"], 
-        "description": "",
+        "description": "delta um personagem pelo id",
         "parameters":
           [
             {
@@ -385,7 +385,7 @@
     "/character/update/{id}": {
       "put": {
         "tags": ["Personagem"], 
-        "description": "",
+        "description": "atualiza um personagem pelo id",
         "parameters":
           [
             {
@@ -408,7 +408,7 @@
     "/character/favorite/{id}": {
       "delete": {
         "tags": ["Personagem"], 
-        "description": "",
+        "description": "pega os personagens favoritos",
         "parameters":
           [
             {
@@ -431,7 +431,7 @@
     "/comics/save": {
       "post": {
         "tags": ["Quadrinhos"], 
-        "description": "",
+        "description": "cria um quadrinho novo",
         "parameters":
           [
             {
@@ -457,7 +457,7 @@
     "/comics/mostExpensive": {
       "get": {
         "tags": ["Quadrinhos"], 
-        "description": "",
+        "description": "pega os quadrinhos mais caros",
         "responses": {
           "201": {
             "description": "Created"
@@ -471,7 +471,7 @@
     "/comics/findAll": {
       "get": {
         "tags": ["Quadrinhos"], 
-        "description": "",
+        "description": "pega todos os quadrinhos",
         "responses": {
           "201": {
             "description": "Created"
@@ -485,7 +485,7 @@
     "/comics/findById/{id}": {
       "get": {
         "tags": ["Quadrinhos"], 
-        "description": "",
+        "description": "procure quadrinho pelo id",
         "parameters":
           [
             {
@@ -508,7 +508,7 @@
     "/comics/delete/{id}": {
       "delete": {
         "tags": ["Quadrinhos"], 
-        "description": "",
+        "description": "deleta quadrinho pelo id",
         "parameters":
           [
             {
@@ -531,7 +531,7 @@
     "/comics/update/{id}": {
       "put": {
         "tags": ["Quadrinhos"], 
-        "description": "",
+        "description": "atualiza quadrinho pelo id",
         "parameters":
           [
             {
@@ -541,7 +541,7 @@
               "type": "string"
             },           
             {
-              "name": "CREATE",
+              "name": "UPDATE",
                "in": "body",
               "required": true,
              "type": "Quadrinho",
@@ -553,7 +553,7 @@
           ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Updadted"
           },
           "500": {
             "description": "Internal Server Error"
@@ -564,7 +564,7 @@
     "/comics/findByCreator/{name}": {
       "get": {
         "tags": ["Quadrinhos"], 
-        "description": "",
+        "description": "Pega os quadrinhos pelo nome do criador",
         "parameters":
           [
             {
