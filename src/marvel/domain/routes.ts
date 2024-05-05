@@ -12,7 +12,8 @@ const routes = Router()
 
         routes.post('/creators/populate',creatorController.findAndCreateCreator); 
         routes.get('/creators', creatorController.findCreator);
-        routes.post('/creators/create', creatorController.createCriador);   
+        routes.post('/creators/create', creatorController.createCriador);
+        routes.get('/creators/findByName/:name', creatorController.findCreatorByName); 
         routes.get('/creators/findById/:id', creatorController.findCreatorById);
         routes.put('/creators/atualiza/:id', creatorController.updateCreator);
         routes.delete('/creators/delete/:id', creatorController.deleteCreator);
@@ -28,10 +29,12 @@ const routes = Router()
 
         routes.post('/comics/populate', comicsController.findAndCreateComic);
         routes.post('/comics/save', comicsController.saveNewComic);
+        routes.get('/comics/mostExpensive', comicsController.mostExpensiveComics);
         routes.get('/comics/findAll', comicsController.findAllComics);
         routes.get('/comics/findById/:id', comicsController.findComicById);
         routes.delete('/comics/delete/:id', comicsController.deleteComic);
         routes.put('/comics/update/:id', comicsController.updateComic);
+        routes.get('/comics/findByCreator/:name', comicsController.findComicsByCreator);
 
 export {
     routes

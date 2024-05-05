@@ -2,7 +2,7 @@ import { CharacterComicsCreatorsDTO } from "../charaters/characterComicsCreatorD
 import { CharacterDTO } from "./characterDTO"
 
 export interface Comic {
-    id:  number;
+    _id:  number;
     title: string;    
     description:  string;
     releaseDate:  string;

@@ -69,7 +69,16 @@ class CreatorController {
         }
     }
 
-
+    async findCreatorByName(req: Request, res: Response) {
+        try{
+            const name = req.params.name;
+            const creator = await new CreatorService().findByName(name);
+            return res.status(200).json(creator);
+        }catch(e){
+            console.error(e);
+            res.status(500).json(e);
+        }
+    }
 }
 
 export default new CreatorController();

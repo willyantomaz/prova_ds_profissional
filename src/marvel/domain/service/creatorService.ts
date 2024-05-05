@@ -75,6 +75,7 @@ export class CreatorService {
         return deleteCreator;
     }
 
-
-
+    public async findByName(creatorName: string) {
+        return await creatorModel.find({nome: creatorName})
+    }
 }

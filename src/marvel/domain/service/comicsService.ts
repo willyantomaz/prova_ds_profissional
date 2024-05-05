@@ -5,6 +5,7 @@ import { CharacterDTO } from "../Entidade/comics/characterDTO";
 import { CharacterService } from "./characterService";
 import { Price } from "../Entidade/comics/priceComicDTO";
 import { DateDTO } from "../Entidade/comics/dateComicDTO";
+import { CreatorService } from "./creatorService";
 
 export class ComicsService {
     
@@ -38,7 +39,7 @@ export class ComicsService {
 
     private async mapComicToSave(responseComic: any): Promise<Comic> {
         let comicToSave: Comic = {
-            id: responseComic.id,
+            _id: responseComic.id,
             title: responseComic.name,
             description: responseComic.description,            
             releaseDate: responseComic.dates.filter((date: DateDTO) => date.type === 'onsaleDate').map((date: DateDTO) => date.date)[0],
@@ -103,6 +104,22 @@ export class ComicsService {
             const comic = await comicSchema.create(newComic);
             return comic;            
         } catch(e) {
+            console.log(e)
+        }
+    }
+
+    public async findComicByCreator(creatorName: string) {
+        try{         
+            return await comicSchema.find({'creators.name': creatorName })        
+        }catch(e) {
+            console.log(e)
+        }
+    }
+
+    public async mostExpensiveComics() {
+        try {
+            return await comicSchema.find().sort({ "digitalPurchasePrice": -1 }).limit(3)
+        }catch (e) {
             console.log(e)
         }
     }
