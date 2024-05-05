@@ -112,8 +112,6 @@ export class CharacterService {
 
     public async saveNewCharacter(newCharacter: Character) {
         try {    
-            const characterId = (await characterSchema.findOne({}, { sort: { _id: -1 } }))?._id
-            newCharacter._id = characterId ? characterId + 1 : characterId                   
             const character = await characterSchema.create(newCharacter);
             return character;            
         } catch(e) {
