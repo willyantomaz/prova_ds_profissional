@@ -738,7 +738,9 @@
         "Personagem": {
           "type": "object",
           "properties": {
-
+            "_id": {
+              "type": "integer"
+            },
             "name": {
               "type": "string"
             },
