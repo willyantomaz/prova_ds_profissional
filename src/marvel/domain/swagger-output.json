@@ -408,7 +408,7 @@
     "/character/favorite/{id}": {
       "put": {
         "tags": ["Personagem"], 
-        "description": "pega os personagens favoritos",
+        "description": "coloca o personagem na lsita de favoritos",
         "parameters":
           [
             {
