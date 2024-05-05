@@ -28,7 +28,7 @@
     "/creators/populate": {
       "post": {
         "tags": ["Fall of the Mutants Populate"], 
-        "description": "pega os criadores da saga Fall of the Mutants",
+        "description": "pega os criadores da saga Fall of the Mutants e os quadrinhos da saga que ele participou",
         "responses": {
           "201": {
             "description": "Created"
@@ -39,10 +39,10 @@
         }
       }
     },
-    "/create/populate": {
+    "/character/populate": {
       "post": {
         "tags": ["Fall of the Mutants Populate"], 
-        "description": "pega os personagens da saga Fall of the Mutants",
+        "description": "pega os personagens da saga Fall of the Mutants e os quadrinhos da saga que ele participou",
         "responses": {
           "201": {
             "description": "Created"
@@ -53,8 +53,8 @@
         }
       }
     },
-    "/character": {
-      "get": {
+    "/comics/populate": {
+      "post": {
         "tags": ["Fall of the Mutants Populate"], 
         "description": "mostra os personagens da saga Fall of the Mutants",
         "responses": {
@@ -92,7 +92,16 @@
               "in": "path",
               "required": true,
               "type": "string"
-            }
+            },
+            {
+              "name": "UPDATE",
+              "in": "body",
+              "required": true,
+              "type": "Creator",
+              "schema":{
+                  "$ref": "#/components/schemas/Saga"
+              }
+            }  
           ],
         "responses": {
           "201": {
@@ -153,7 +162,7 @@
         },
         "parameters": [
           {
-            "name": "name",
+            "name": "CREATE",
             "in": "body",
             "required": true,
             "type": "Creator",
@@ -195,8 +204,63 @@
         }
       }
     },
+    "/creators/findByName/{name}": {
+      "get": {
+        "tags": ["Criadores"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "name",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/creators/atualiza/{id}": {
       "put": {
+        "tags": ["Criadores"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "UPDATE",
+              "in": "body",
+              "required": true,
+              "type": "Creator",
+              "schema":{
+                  "$ref": "#/components/schemas/Creator"
+              }
+            }                   
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/delete/{id}": {
+      "delete": {
         "tags": ["Criadores"], 
         "description": "",
         "parameters":
@@ -218,14 +282,293 @@
         }
       }
     },
-    "/creators/delete/{id}": {
-      "delete": {
-        "tags": ["Criadores"], 
+    "/character/save": {
+      "post": {
+        "tags": ["Personagem"], 
+        "description": "",
+        "parameters":
+          [         
+            {
+              "name": "CREATE",
+              "in": "body",
+              "required": true,
+              "type": "Personagem",
+              "schema":{
+                  "$ref": "#/components/schemas/Personagem"
+              }
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/findAll": {
+      "get": {
+        "tags": ["Personagem"], 
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/findFavorite": {
+      "get": {
+        "tags": ["Personagem"], 
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/findById/{id}": {
+      "get": {
+        "tags": ["Personagem"], 
         "description": "",
         "parameters":
           [
             {
               "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/delete/{id}": {
+      "delete": {
+        "tags": ["Personagem"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/update/{id}": {
+      "put": {
+        "tags": ["Personagem"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/favorite/{id}": {
+      "delete": {
+        "tags": ["Personagem"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/save": {
+      "post": {
+        "tags": ["Quadrinhos"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "CREATE",
+              "in": "body",
+              "required": true,
+              "type": "Quadrinho",
+              "schema":{
+                  "$ref": "#/components/schemas/Comic"
+              }
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/mostExpensive": {
+      "get": {
+        "tags": ["Quadrinhos"], 
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/findAll": {
+      "get": {
+        "tags": ["Quadrinhos"], 
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/findById/{id}": {
+      "get": {
+        "tags": ["Quadrinhos"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/delete/{id}": {
+      "delete": {
+        "tags": ["Quadrinhos"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/update/{id}": {
+      "put": {
+        "tags": ["Quadrinhos"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },           
+            {
+              "name": "CREATE",
+               "in": "body",
+              "required": true,
+             "type": "Quadrinho",
+              "schema":{
+                  "$ref": "#/components/schemas/Comic"
+              }
+            }
+            
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/findByCreator/{name}": {
+      "get": {
+        "tags": ["Quadrinhos"], 
+        "description": "",
+        "parameters":
+          [
+            {
+              "name": "name",
               "in": "path",
               "required": true,
               "type": "string"
@@ -260,6 +603,72 @@
               "type": "string"
             }
           }
+        },      
+          "Comic": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "integer"
+              },
+              "description": {
+                "type": "string"
+              },
+              "releaseDate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "digitalPurchasePrice": {
+                "type": "number",
+                "format": "float"
+              },
+              "cover": {
+                "type": "string",
+                "format": "uri"
+              },
+              "characters": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "creators": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreatorQuadrinho"
+                }
+              }
+            }
+          },     
+        "QuadrinhoCreator": {
+          "type": "object",
+          "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "creators": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatorQuadrinho"
+            }
+           }
+         }
+        },
+        "CreatorQuadrinho": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          }
         },
         "Creator": {
           "type": "object",
@@ -290,8 +699,69 @@
               "type": "integer"
             }
           }
-        }
+        },
+        "Saga": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "integer"
+            },
+            "titulo": {
+              "type": "string"
+            },
+            "descricao": {
+              "type": "string"
+            },
+            "sagaURL": {
+              "type": "string"
+            },
+            "modificado": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "inicio": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "fim": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "imagem": {
+              "type": "string"
+            },
+            "__v": {
+              "type": "integer"
+            }
+          }
+        },
+        "Personagem": {
+          "type": "object",
+          "properties": {
+
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "comics": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Quadrinho"
+              }
+            },
+            "favorite": {
+              "type": "boolean"
+            },
+            "__v": {
+              "type": "integer"
+            }
+          }
+        }      
       }
-  }
-  
+  }  
 }
