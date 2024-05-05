@@ -1,0 +1,769 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API da Marvel",
+    "description": "busca da saga Fall of the Mutants",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/event/populate": {
+      "post": {
+        "tags": ["Fall of the Mutants Populate"], 
+        "description": "pegar a saga Fall of the Mutants",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/populate": {
+      "post": {
+        "tags": ["Fall of the Mutants Populate"], 
+        "description": "pega os criadores da saga Fall of the Mutants e os quadrinhos da saga que ele participou",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/populate": {
+      "post": {
+        "tags": ["Fall of the Mutants Populate"], 
+        "description": "pega os personagens da saga Fall of the Mutants e os quadrinhos da saga que ele participou",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/populate": {
+      "post": {
+        "tags": ["Fall of the Mutants Populate"], 
+        "description": "mostra os personagens da saga Fall of the Mutants",
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/event": {
+      "get": {
+        "tags": ["Saga"], 
+        "description": "Visualiza a Saga Fall of the Mutants",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/event/atualiza/{id}": {
+      "put": {
+        "tags": ["Saga"], 
+        "description": "Atualiza a saga pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "UPDATE",
+              "in": "body",
+              "required": true,
+              "type": "Creator",
+              "schema":{
+                  "$ref": "#/components/schemas/Saga"
+              }
+            }  
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/event/delete/{id}": {
+      "delete": {
+        "tags": ["Saga"], 
+        "description": "Deleta a saga pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators": {
+      "get": {
+        "tags": ["Criadores"], 
+        "description": "Ve todos os criadores e os seus quadrinhos da saga Fall of the Mutants",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/create": {
+      "post": {
+        "tags": ["Criadores"], 
+        "description": "Cria um novo criador",
+        "headers": {
+          "Content-Type": {
+            "type": "string",
+            "description": "application/json"
+          }
+        },
+        "parameters": [
+          {
+            "name": "CREATE",
+            "in": "body",
+            "required": true,
+            "type": "Creator",
+            "schema":{
+              "$ref": "#/components/schemas/Creator"
+            }
+          }        
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/findById/{id}": {
+      "get": {
+        "tags": ["Criadores"], 
+        "description": "Pega os criadores pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/findByName/{name}": {
+      "get": {
+        "tags": ["Criadores"], 
+        "description": "procura um criador pelo nome",
+        "parameters":
+          [
+            {
+              "name": "name",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/atualiza/{id}": {
+      "put": {
+        "tags": ["Criadores"], 
+        "description": "Atualiza um criardor pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "UPDATE",
+              "in": "body",
+              "required": true,
+              "type": "Creator",
+              "schema":{
+                  "$ref": "#/components/schemas/Creator"
+              }
+            }                   
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/creators/delete/{id}": {
+      "delete": {
+        "tags": ["Criadores"], 
+        "description": "Deleta um criador pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/save": {
+      "post": {
+        "tags": ["Personagem"], 
+        "description": "Cria um personagem novo",
+        "parameters":
+          [         
+            {
+              "name": "CREATE",
+              "in": "body",
+              "required": true,
+              "type": "Personagem",
+              "schema":{
+                  "$ref": "#/components/schemas/Personagem"
+              }
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/findAll": {
+      "get": {
+        "tags": ["Personagem"], 
+        "description": "pega todos os personagens da saga Fall of the Mutants",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/findFavorite": {
+      "get": {
+        "tags": ["Personagem"], 
+        "description": "ve os personagens favoritos",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/findById/{id}": {
+      "get": {
+        "tags": ["Personagem"], 
+        "description": "procura um personagem pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/delete/{id}": {
+      "delete": {
+        "tags": ["Personagem"], 
+        "description": "delta um personagem pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/update/{id}": {
+      "put": {
+        "tags": ["Personagem"], 
+        "description": "atualiza um personagem pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/character/favorite/{id}": {
+      "put": {
+        "tags": ["Personagem"], 
+        "description": "coloca o personagem na lsita de favoritos",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/save": {
+      "post": {
+        "tags": ["Quadrinhos"], 
+        "description": "cria um quadrinho novo",
+        "parameters":
+          [
+            {
+              "name": "CREATE",
+              "in": "body",
+              "required": true,
+              "type": "Quadrinho",
+              "schema":{
+                  "$ref": "#/components/schemas/Comic"
+              }
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/mostExpensive": {
+      "get": {
+        "tags": ["Quadrinhos"], 
+        "description": "pega os quadrinhos mais caros",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/findAll": {
+      "get": {
+        "tags": ["Quadrinhos"], 
+        "description": "pega todos os quadrinhos",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/findById/{id}": {
+      "get": {
+        "tags": ["Quadrinhos"], 
+        "description": "procure quadrinho pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/delete/{id}": {
+      "delete": {
+        "tags": ["Quadrinhos"], 
+        "description": "deleta quadrinho pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/update/{id}": {
+      "put": {
+        "tags": ["Quadrinhos"], 
+        "description": "atualiza quadrinho pelo id",
+        "parameters":
+          [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },           
+            {
+              "name": "UPDATE",
+               "in": "body",
+              "required": true,
+             "type": "Quadrinho",
+              "schema":{
+                  "$ref": "#/components/schemas/Comic"
+              }
+            }
+            
+          ],
+        "responses": {
+          "201": {
+            "description": "Updadted"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/comics/findByCreator/{name}": {
+      "get": {
+        "tags": ["Quadrinhos"], 
+        "description": "Pega os quadrinhos pelo nome do criador",
+        "parameters":
+          [
+            {
+              "name": "name",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },   
+    "components": {
+      "schemas": {
+        "Quadrinho": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "titulo": {
+              "type": "string"
+            },
+            "hqURL": {
+              "type": "string"
+            }
+          }
+        },      
+          "Comic": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "integer"
+              },
+              "description": {
+                "type": "string"
+              },
+              "releaseDate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "digitalPurchasePrice": {
+                "type": "number",
+                "format": "float"
+              },
+              "cover": {
+                "type": "string",
+                "format": "uri"
+              },
+              "characters": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "creators": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreatorQuadrinho"
+                }
+              }
+            }
+          },     
+        "QuadrinhoCreator": {
+          "type": "object",
+          "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "creators": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatorQuadrinho"
+            }
+           }
+         }
+        },
+        "CreatorQuadrinho": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          }
+        },
+        "Creator": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "integer"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "modificado": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "atorURL": {
+              "type": "string"
+            },
+            "imagem": {
+              "type": "string"
+            },
+            "quadrinhos": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Quadrinho"
+              }
+            },
+            "__v": {
+              "type": "integer"
+            }
+          }
+        },
+        "Saga": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "integer"
+            },
+            "titulo": {
+              "type": "string"
+            },
+            "descricao": {
+              "type": "string"
+            },
+            "sagaURL": {
+              "type": "string"
+            },
+            "modificado": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "inicio": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "fim": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "imagem": {
+              "type": "string"
+            },
+            "__v": {
+              "type": "integer"
+            }
+          }
+        },
+        "Personagem": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "comics": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Quadrinho"
+              }
+            },
+            "favorite": {
+              "type": "boolean"
+            },
+            "__v": {
+              "type": "integer"
+            }
+          }
+        }      
+      }
+  }  
+}

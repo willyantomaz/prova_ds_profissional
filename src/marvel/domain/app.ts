@@ -1,6 +1,8 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import { routes } from './routes'
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
 
 class App {
     express: express.Application
@@ -28,6 +30,7 @@ class App {
 
     private routes(): void {
         this.express.use(routes)
+        this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     }
     
 }
