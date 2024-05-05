@@ -1,8 +1,9 @@
 import eventModel from '../schema/event.schema';
-import { response } from 'express';
+import {response} from 'express';
 import {Event} from '../Entidade/event/event';
 
 export class EventService {
+    
 
     async createEvent(){
        
@@ -25,7 +26,24 @@ export class EventService {
 
         return createEvent;       
         
-    }       
+    }   
+    
+    async findEvent(){
+        const event = await eventModel.find();
+        return event;
+    }
+
+    async updateEvent(id: String, usuario: Event){
+        const updateEvent = await eventModel.findByIdAndUpdate(id, usuario, {new: true});
+        return updateEvent;
+    }
+
+    async deleteEvent(id: String) {
+        const deleteEvent = await eventModel.findByIdAndDelete(id);
+        return deleteEvent;
+    }
+
+    
 }
 
 

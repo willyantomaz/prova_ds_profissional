@@ -9,7 +9,7 @@ export class CreatorService {
     }
 
 
-    public async createCreator(){
+    public async createPopulate(){
               
         const response = await this.genericSearch("http://gateway.marvel.com/v1/public/events/248/creators");
         const data: any = await response.json();
@@ -51,7 +51,33 @@ export class CreatorService {
             hqs.push(characterComicsDTO);
         })        
         return hqs;
-
     }
+
+    public async findCreator(){
+        const creator = await creatorModel.find();
+        return creator;
+    }
+
+    public async findCreatorById(id: String){
+        const creator = await creatorModel.findById(id);
+        return creator;
+    }
+
+    public async create(criador: Creator){
+        const creator = await creatorModel.create(criador);
+        return creator;
+    }
+
+    public async updateCreator(id: String, criador: Creator){
+        const updateCreator = await creatorModel.findByIdAndUpdate(id, criador, {new: true});
+        return updateCreator;
+    }
+    
+    public async deleteCreator(id: String) {
+        const deleteCreator = await creatorModel.findByIdAndDelete(id);
+        return deleteCreator;
+    }
+
+
 
 }
