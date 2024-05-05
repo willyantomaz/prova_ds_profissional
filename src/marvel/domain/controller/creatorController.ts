@@ -4,7 +4,7 @@ import { CreatorService } from "../service/creatorService";
 
 class CreatorController {
     
-    async creatPopulate(req: Request, res: Response) {
+    async findAndCreateCreator(req: Request, res: Response) {
         try{
             const creatorCreated = await new CreatorService().createPopulate();
             return res.status(201).json(creatorCreated); 

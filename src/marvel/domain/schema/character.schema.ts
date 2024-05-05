@@ -1,10 +1,8 @@
 import { Schema, model } from "mongoose";
+import { Character } from "../Entidade/charaters/character";
 
-export const CharacterSchema = new Schema({          
-    id: {
-        type: "number",
-        alias: "char_id"
-    },
+export const CharacterSchema = new Schema<Character>({          
+    _id: {type: "number", required: true},
     name:{type: "string"},
     description: {type: "string"},
     image: {type: "string"},
@@ -26,7 +24,8 @@ export const CharacterSchema = new Schema({
                 }
             }
         }              
-    }
+    },
+    favorite: {type: "boolean",}
 })
 
 export default model('Character', CharacterSchema);        

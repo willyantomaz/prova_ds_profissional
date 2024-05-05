@@ -18,7 +18,7 @@ export class CreatorService {
 
         creatorResult.forEach(async (creator: any) => {   
 
-            let cratorMap: Creator = {
+            let creatorMap: Creator = {
                 _id: creator.id,
                 nome: creator.fullName,
                 modificado: creator.modified,
@@ -27,13 +27,10 @@ export class CreatorService {
                 
                 quadrinhos: await this.mapCharacterComics(creator.comics.collectionURI)
             }
-            createCreator.push(cratorMap);
-            creatorModel.create(cratorMap);
-           
-
+            createCreator.push(creatorMap);
+            creatorModel.create(creatorMap);            
         });
         return createCreator;       
-
     }
     private async mapCharacterComics(url: any): Promise<Array<CreatorComicsDTO>> {
 

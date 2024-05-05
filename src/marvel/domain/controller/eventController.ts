@@ -4,7 +4,7 @@ import { EventService } from "../service/eventService";
 
 class EventController {
     
-    async createEvent(req: Request, res: Response) {
+    async findAndCreateEvent(req: Request, res: Response) {
         try{
             const eventCreated = await new EventService().createEvent();
             return res.status(201).json(eventCreated); 
